@@ -6,20 +6,30 @@
     // create session cookie
     session_start();
 
-    
-
     // connect to db
     function connect() {
         // get db connection info
-        include_once('config.php');
-        $conn = mysqli_connect($host, $username, $pass, $db, $port);
+        try {
+            include_once('config.php');
+            $conn = mysqli_connect($host, $username, $pass, $db, $port);
+        }
+        catch(Exception $e) {
+            echo "Connection failed: ", $e -> getMessage(), "\n";
+        }
         return $conn;
     }
 
+    // disconnect from db
     function disconnect($conn) {
-        mysqli_close($conn);
+        try {
+            mysqli_close($conn);
+        }
+        catch(Exception $e) {
+            echo "Unable to disconnect: ", $e -> getMessage(), "\n";
+        }
     }
 
+    // for debugging, print variable contents 
     // usage: dump($a, $b)
     function dump()
     {
