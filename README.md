@@ -5,9 +5,12 @@ The HFESTS system help health care facilitites to keep track of their employees'
 ## Requirements
 
 - [XAMPP](https://www.apachefriends.org/)
+
   - PHP (Back-End)
   - MySQL (DB server)
   - Apache (Web Server)
+
+- Main project folder should be located in .../XAMPP/htdocs
 
 ## Project Layout
 
