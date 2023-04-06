@@ -22,7 +22,7 @@ The HFESTS system help health care facilitites to keep track of their employees'
     ├── views/
     │   ├── footer.php      # Common footer for all pages
     │   ├── header.php      # Common header for all pages
-    │   └── index.php       # Body of index page
+    │   └── index_body.php  # Body of index page
     ├── config.php          # DB connection credentials
     ├── helpers.php         # Common helper/utility functions
     └── index.php           # Controller to handle user request and return response

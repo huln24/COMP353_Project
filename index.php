@@ -1,7 +1,13 @@
 <?php
 include 'helpers.php';
 
+$conn = connect();
+echo "Connected";
+disconnect($conn);
+echo "Disconnected";
 // Renders header.php - index.php - footer.php
-render('index.php', ['title' => "Welcome!"]);
+render('main_body.php', ['title' => "Welcome!"]);
+
+
 
 ?>
