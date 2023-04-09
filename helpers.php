@@ -68,4 +68,13 @@
         }
     }
 
+    // function get_query_result($id)
+    // {
+    //     switch ($id) {
+    //         case 1:
+    //             return "SELECT ..."
+    //         ...
+    //     }
+    // } 
+
 ?>
