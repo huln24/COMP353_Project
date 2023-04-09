@@ -68,7 +68,7 @@
         }
     }
 
-    // function get_query_result($id)
+    // function get_query($id)
     // {
     //     switch ($id) {
     //         case 1:

@@ -9,9 +9,9 @@
     <?php foreach ($records as $record): ?>
     
     <tr class="table">
-        <td class="cell"><?= $record["eid"] ?></td>
-        <td class="cell"><?= $record["fname"] ?></td>
-        <td class="cell"><?= $record["lname"] ?></td>
+        <td class="cell"><?= $record["EID"] ?></td>
+        <td class="cell"><?= $record["FirstName"] ?></td>
+        <td class="cell"><?= $record["LastName"] ?></td>
 
     </tr>
     
