@@ -74,3 +74,13 @@
 				echo "<tr><th>Facility</th><th>Day of the Year</th><th>Start Time</th><th>End Time</th></tr>";
 				foreach ($data as $row) {
 					echo "<tr><td>{$row[0]}</td><td>{$row[1]}</td><td>{$row[2]}</td><td>{$row[3]}</td></tr
+				}
+				echo "</table>";
+			} else {
+				echo "No schedule details found.";
+			}
+		}
+	?>
+</body>
+</html>
+
