@@ -1,25 +1,54 @@
 <?php
 include "utilities/helpers.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "GET")
+// connect to server
+$conn = connect();  
+
+$alert = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    // connect to server
-    $conn = connect();  
-    
-    $action = $_GET['action'] ?? "nothing";
+    $action = $_POST['action'] ?? "nothing";
 
-    if ($action == 'delete') {
-        $id = $_GET["id"];
-        $query = "DELETE FROM Employees WHERE EID = $id";
-        if (mysqli_execute_query($conn, $query)) {
-            echo '<script>alert("Deleted succesfully!")</script>';
-            redirect("employees.php");
-        } 
-        else {
-            echo '<script>alert("Oops! Something went wrong.")</script>';
+    if ($action == 'add') {
+        // get values
+        $fname = $_POST['fname'];
+        $lname = $_POST['lname'];
+        $medicare = $_POST['medicare'];
+        $dob = $_POST['dob'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $province = $_POST['province'];
+        $postal = $_POST['postal'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $citizen = $_POST['citizen'];
+
+        $query1 = "insert into Region(PostalCode, City, Province) values(?,?,?)";
+        $query2 = "insert into Employees(FirstName, LastName, Medicare, DoB, Address, PostalCode, Phone, Email, Citizenship) values(?,?,?,?,?,?,?,?,?)";
+
+
+        // prepare query
+        $stmt1 = mysqli_prepare($conn, $query1); 
+        $stmt2 = mysqli_prepare($conn, $query2); 
+
+        // bind query with chosen facility id
+        mysqli_stmt_bind_param($stmt1, 'sss', $postal, $city, $province);
+        mysqli_stmt_bind_param($stmt2, 'ssissssss', $fname, $lname, $medicare, $dob, $address, $postal, $phone, $email, $citizen);
+        
+        // execute query
+        $success1 = mysqli_stmt_execute($stmt1);
+        $success2 = mysqli_stmt_execute($stmt2);
+
+        if($success1 and $success2 ) {
+            $alert = "Added succesfully!";
         }
-
+        else {
+            $alert = "Unable to add. Error occured!";
+        }
     }
+}
+
     // query result
     $result = mysqli_query($conn, "SELECT * from Employees f JOIN Region r ON r.PostalCode = f.PostalCode"); 
 
@@ -29,11 +58,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     // disconnect from server
     disconnect($conn);  
 
-    render("employees.php", ["title" => "Employees", "records" => $records]);
-}
-// else if ($_SERVER["REQUEST_METHOD"] == "POST")
-// {
-
-// }
-
+    render("employees.php", ["title" => "Employees", "records" => $records, "alert" => $alert]);
 ?>
