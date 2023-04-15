@@ -68,13 +68,4 @@
         }
     }
 
-    // function get_query($id)
-    // {
-    //     switch ($id) {
-    //         case 1:
-    //             return "SELECT ..."
-    //         ...
-    //     }
-    // } 
-
 ?>

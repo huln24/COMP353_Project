@@ -1,29 +1,4 @@
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-</style>
-</head>
-
-<body>
-    <h1>List of Doctors and Nurses on Schedule on the last 2 weeks</h1>
+<h1>List of Doctors and Nurses on Schedule on the last 2 weeks</h1>
     <h2><?= $fname ?></h2>
     <form action="11.php" method="POST">
         <label for="facilities">Choose a Facility:</label>

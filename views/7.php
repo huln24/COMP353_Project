@@ -1,29 +1,4 @@
-    <style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 8px;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-    </style>
-    </head>
-
-    <body>
-
-        <h2>Employees Working in <?= $fname ?></h2>
+<h2>Employees Working in <?= $fname ?></h2>
         <form action="7.php" method="POST">
             <label for="facilities">Choose a Facility:</label>
             <select id="facilities" name="facility">
@@ -33,6 +8,7 @@ tr:nth-child(even) {
             </select>
             <input type="submit" name="GO" value="Go" />
         </form>
+                </br>
         <table>
             <thead>
                 <tr>

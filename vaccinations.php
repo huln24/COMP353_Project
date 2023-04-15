@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT")
     $f_choices = mysqli_fetch_all($f_result, MYSQLI_ASSOC);
 
     // disconnect from server
-    disconnect($conn);  
+    disconnect($conn);
     
     render("vaccinations.php", ["title" => "Vaccination Record", "records" => $records, "e_choices" => $e_choices, "v_choices" => $v_choices, "f_choices" => $f_choices, "alert" => $alert]);
 
