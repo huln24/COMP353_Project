@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Working Nurse(s) with Highest Hours Worked</title>
-</head>
-<body>
-	<h1>Nurse Details</h1>
+<h1>Working Nurse(s) with Highest Total Hours Scheduled</h1>
 	<table>
 		<thead>
 			<tr>
@@ -31,5 +25,3 @@
 			<?php endforeach ?>
 		</tbody>
 	</table>
-</body>
-</html>
