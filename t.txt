@@ -1,0 +1,24 @@
+# 1. Make row editable
+
+1. onlick -> function changes edit to save button
+2. Change the style of the row being edited 
+    by adding the "editable-style" class to the row  
+
+        <tr class="">  ==>> <tr class="editable">
+
+        row = document.getElementById("$id")
+        row.classList.add("editable")
+
+3. For each column you want to modify make it contenteditable=true
+
+    for each cell in children
+        cell.class == "dkd"
+        cell.contenteditable = true
+
+
+4. When save button is clicked
+
+
+    Fetch the values inside the cells and create post REQUEST_METHOD
+    Update query in PHP
+
