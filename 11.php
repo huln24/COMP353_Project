@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     // disconnect from server
     disconnect($conn);  
 
-    render("7.php", ["title" => "7 - Facility Employees", "choices" => $choices, "fname" => $fname]);
+    render("11.php", ["title" => "11 - Doctors and Nurses", "choices" => $choices, "fname" => $fname]);
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
@@ -34,14 +34,12 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
 
         $id = $option[0];
 
-        $query = "SELECT Employees.FirstName, Employees.LastName, Employed.StartDate, Employees.DoB, Employees.Medicare, Employees.Phone, Employees.Address, Region.City, Region.Province, Region.PostalCode, Employees.Citizenship, Employees.Email, Employed.Role
-        FROM Employees
-        INNER JOIN Employed ON Employees.EID = Employed.EID
-        INNER JOIN Facilities ON Employed.FID = Facilities.FID
-        INNER JOIN Region ON Facilities.PostalCode = Region.PostalCode
-        WHERE Facilities.FID = ?
-        ORDER BY Employed.Role ASC, Employees.FirstName ASC, Employees.LastName ASC
-        ";
+        $query = "SELECT FirstName, LastName, Role
+        FROM WorkSchedule w
+        JOIN Employed e ON w.FID = e.FID AND w.EID = e.EID
+        JOIN Employees ON w.EID = Employees.EID
+        WHERE StartDateTime BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 WEEK) AND CURDATE() AND w.FID = ?
+        ORDER BY Role ASC, FirstName ASC";
 
         // prepare query
         $stmt = mysqli_prepare($conn, $query); 
@@ -71,7 +69,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     // disconnect from server
     disconnect($conn);  
 
-    render("7.php", ["title" => "Facility Empoyees", "records" => $records, "choices" => $choices, "fname" => $fname]);
+    render("11.php", ["title" => "11 - Doctors and Nurses", "records" => $records, "choices" => $choices, "fname" => $fname]);
 }
 
 ?>
