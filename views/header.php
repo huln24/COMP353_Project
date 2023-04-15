@@ -2,7 +2,7 @@
 
 <html>
 
-    <head>
+<head>
 
         <title><?= htmlspecialchars($title) ?></title>
         <link rel="stylesheet" href="css/style.css">
