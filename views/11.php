@@ -1,72 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>List of Doctors and Nurses on Schedule</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
+th,
+td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
 
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
 
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-	</style>
+tr:hover {
+    background-color: #f5f5f5;
+}
+</style>
 </head>
+
 <body>
-	<h1>List of Doctors and Nurses on Schedule</h1>
-	<?php
-		// Replace with your database connection information
-		$servername = "localhost";
-		$username = "username";
-		$password = "password";
-		$dbname = "database_name";
+    <h1>List of Doctors and Nurses on Schedule on the last 2 weeks</h1>
+    <h2><?= $fname ?></h2>
+    <form action="11.php" method="POST">
+        <label for="facilities">Choose a Facility:</label>
+        <select id="facilities" name="facility">
+            <?php foreach ($choices as $choice): ?>
+            <option value="<?= $choice['FID'] ?>|<?= $choice['FName'] ?>"><?= $choice['FName'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="submit" name="GO" value="Go" />
+    </form>
 
-		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <?php 
+			$chosen = isset($records);
+			if ($chosen):?>
+        <tbody>
 
-		// Check connection
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		}
+            <?php foreach ($records as $record): ?>
 
-		// Replace with the facility ID you want to display the list for
-		$facility_id = 1;
+            <tr class="table">
+                <td class="cell"><?= $record["FirstName"] ?></td>
+                <td class="cell"><?= $record["LastName"] ?></td>
+                <td class="cell"><?= $record["Role"] ?></td>
+            </tr>
 
-		// Query to get the list of doctors and nurses who have been on schedule to work in the last two weeks for the given facility
-		$sql = "SELECT users.first_name, users.last_name, users.role
-				FROM schedules
-				INNER JOIN users ON schedules.user_id = users.id
-				WHERE schedules.facility_id = $facility_id
-				AND schedules.date >= DATE_SUB(CURRENT_DATE, INTERVAL 2 WEEK)
-				ORDER BY users.role ASC, users.first_name ASC";
-
-		$result = $conn->query($sql);
-
-		if ($result->num_rows > 0) {
-			echo "<table>";
-			echo "<tr><th>First Name</th><th>Last Name</th><th>Role</th></tr>";
-			while ($row = $result->fetch_assoc()) {
-				echo "<tr><td>" . $row["first_name"] . "</td><td>" . $row["last_name"] . "</td><td>" . $row["role"] . "</td></tr>";
-			}
-			echo "</table>";
-		} else {
-			echo "No results found.";
-		}
-
-		$conn->close();
-	?>
-</body>
-</html>
+            <?php endforeach ?>
+        </tbody>
+        <?php endif; ?>
+    </table>
