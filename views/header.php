@@ -26,7 +26,7 @@
             <li><a href="12.php">12</a></li>
             <li><a href="13.php">13</a></li>
             <li><a href="14.php">14</a></li>
-            <li><a href="queries.php">15</a></li>
+            <li><a href="15.php">15</a></li>
             <li><a href="16.php">16</a></li>
             <li><a href="17.php">17</a></li>
 
