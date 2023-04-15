@@ -3,6 +3,8 @@ include "utilities/helpers.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
+    $fname = "";
+
     // connect to server
     $conn = connect();  
 
@@ -17,11 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     // disconnect from server
     disconnect($conn);  
 
-    render("7.php", ["title" => "7 - Facility Employees", "choices" => $choices]);
+    render("7.php", ["title" => "7 - Facility Employees", "choices" => $choices, "fname" => $fname]);
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-
+    $fname = "";
+    
     // connect to server
     $conn = connect();  
     
