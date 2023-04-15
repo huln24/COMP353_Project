@@ -2,20 +2,6 @@
 <html>
 <head>
 	<title>Doctor List</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
-		th {
-			background-color: #f2f2f2;
-		}
-	</style>
 </head>
 <body>
 	<h1>Doctor List</h1>

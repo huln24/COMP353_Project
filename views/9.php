@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Infected Doctors</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-	</style>
 </head>
 <body>
 	<h1>Infected Doctors</h1>

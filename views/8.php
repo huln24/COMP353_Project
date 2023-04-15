@@ -2,31 +2,6 @@
 <html>
 <head>
 	<title>Schedule Details</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		th, td {
-			text-align: left;
-			padding: 8px;
-			border-bottom: 1px solid #ddd;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-
-		input[type=submit] {
-			background-color: #4CAF50;
-			color: white;
-			padding: 12px 20px;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-	</style>
 </head>
 <body>
 	<h2>Schedule Details</h2>

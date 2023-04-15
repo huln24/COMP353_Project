@@ -2,24 +2,6 @@
 <html>
 <head>
 	<title>Employees Not Infected by COVID-19</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-			border: 1px solid #ddd;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-	</style>
 </head>
 <body>
 	<h1>Employees Not Infected by COVID-19</h1>

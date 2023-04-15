@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
 	<title>List of Doctors and Nurses on Schedule</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-
-		th, td {
-			padding: 8px;
-			text-align: left;
-			border-bottom: 1px solid #ddd;
-		}
-
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-
-		tr:nth-child(even) {
-			background-color: #f2f2f2;
-		}
-	</style>
 </head>
 <body>
 	<h1>List of Doctors and Nurses on Schedule</h1>
