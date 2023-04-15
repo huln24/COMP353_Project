@@ -37,7 +37,7 @@
             <td class="cell"><?= $record["Phone"] ?></td>
             <td class="cell"><?= $record["Email"] ?></td>
             <td class="cell"><?= $record["Citizenship"] ?></td>
-            <td colspan="3">
+            <td colspan="2">
                 <button class="button edit-button">Edit</button>
                 <button class="button delete-button">Delete</button>
             </td>

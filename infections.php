@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     $conn = connect();  
 
     // query result
-    $result = mysqli_query($conn, "SELECT * from Infections"); 
+    $result = mysqli_query($conn, "SELECT * from Infected"); 
 
     // result to array
     $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
