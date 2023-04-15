@@ -1,4 +1,8 @@
-<h2>Schedule Details: <?= $fname ?> <?= $lname ?> from: <?= $start ?> to: <?= $end ?></h2>
+<h2>Schedule Details: <?= $fname ?> <?= $lname ?></h2>
+<?php if (!empty($start) and !empty($end)): ?>
+<h3>Between: <?= $start ?> and <?= $end ?></h3>
+<?php endif; ?>
+
 <form action="8.php" method="POST">
     <label for="employees">Employee:</label>
     <select id="employees" name="employee">

@@ -1,11 +1,13 @@
 <?php
 include "utilities/helpers.php";
 
+$fname = "";
+$lname = "";
+$start = "";
+$end = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "GET")
 {
-    $fname = "";
-    $lname = "";
-
     // connect to server
     $conn = connect();  
 
@@ -18,14 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     // disconnect from server
     disconnect($conn);  
 
-    render("8.php", ["title" => "8 - Employee Schedule", "choices" => $choices, "fname" => $fname, "lname" => $lname]);
+    render("8.php", ["title" => "8 - Employee Schedule", "choices" => $choices, "fname" => $fname, "lname" => $lname, "start" => $start, "end" => $end]);
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    $fname = "";
-    $lname = "";
-    $start = "";
-    $end = "";
     // connect to server
     $conn = connect();  
     
