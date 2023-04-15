@@ -38,7 +38,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
         FROM WorkSchedule w
         JOIN Employed e ON w.FID = e.FID AND w.EID = e.EID
         JOIN Employees ON w.EID = Employees.EID
-        WHERE StartDateTime BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 WEEK) AND CURDATE() AND w.FID = ?
+        WHERE Role in ('doctor', 'nurse') AND StartDateTime BETWEEN DATE_SUB(CURDATE(), INTERVAL 2 WEEK) AND CURDATE() AND w.FID = ?
         ORDER BY Role ASC, FirstName ASC";
 
         // prepare query
