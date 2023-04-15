@@ -1,12 +1,4 @@
 <h2>Work Schedules</h2>
-<?php if (!empty($alert)): ?>
-<div>
-    <script>
-    alert('<?= $alert ?>')
-    </script>
-</div>
-<?php endif; 
-?>
 <table>
     <thead>
         <tr>
@@ -19,7 +11,7 @@
     </thead>
     <tbody>
         <tr>
-            <form action="workschedules.php" method="POST">
+            <form action="schedules.php" method="POST">
                 <input type="hidden" name="action" value="add">
                 <td>
                     <select id="employees" name="employee" required>

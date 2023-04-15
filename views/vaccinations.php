@@ -1,12 +1,4 @@
 <h2>Vaccinations</h2>
-<?php if (!empty($alert)): ?>
-<div>
-    <script>
-    alert('<?= $alert ?>')
-    </script>
-</div>
-<?php endif; ?>
-
 <body>
     <table>
         <thead>
@@ -79,3 +71,11 @@
             <?php endforeach ?>
         </tbody>
     </table>
+
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; ?>

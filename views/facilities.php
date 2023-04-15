@@ -1,16 +1,7 @@
 <h2>Facilities</h2>
-<?php if (!empty($alert)): ?>
-<div>
-    <script>
-    alert('<?= $alert ?>')
-    </script>
-</div>
-<?php endif; 
-?>
     <table>
         <thead>
             <tr>
-                <th>FID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>City</th>
@@ -60,10 +51,10 @@
                 </form>
             </tr>
 
-            <?php foreach ($records as $record): ?>
+            <?php foreach ($records as $record):
+                $fid = $record["FID"]; ?>
 
             <tr class="table">
-                <td class="cell"><?= $fid = $record["FID"] ?></td>
                 <td class="cell"><?= $record["FName"] ?></td>
                 <td class="cell"><?= $record["FAddress"] ?></td>
                 <td class="cell"><?= $record["City"] ?></td>

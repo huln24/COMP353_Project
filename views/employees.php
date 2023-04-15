@@ -1,12 +1,4 @@
 <h2>Employees</h2>
-<?php if (!empty($alert)): ?>
-<div>
-    <script>
-    alert('<?= $alert ?>')
-    </script>
-</div>
-<?php endif; 
-?>
 <table>
     <thead>
         <tr>

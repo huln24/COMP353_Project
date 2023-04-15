@@ -1,12 +1,4 @@
 <h1>Infection Types</h1>
-<?php if (!empty($alert)): ?>
-<div>
-    <script>
-    alert('<?= $alert ?>')
-    </script>
-</div>
-<?php endif; 
-?>
 <table>
     <thead>
         <tr>
