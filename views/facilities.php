@@ -15,9 +15,41 @@
             </tr>
         </thead>
         <tbody>
-            <td>
-                <button class="button create-button">Add</button>
-            </td>
+            <tr>
+                <form action="facilities.php" method="POST">
+                    <input type="hidden" name="action" value="add">
+                    <td>
+                        <input type="text" id="fname" name="fname" required>
+                    </td>
+                    <td>
+                        <input type="text" id="address" name="address" required>
+                    </td>
+                    <td>
+                        <input type="text" id="city" name="city" required>
+                    </td>
+                    <td>
+                        <input type="text" id="province" name="province" required>
+                    </td>
+                    <td>
+                        <input type="text" id="postal" name="postal" required>
+                    </td>
+                    <td>
+                        <input type="text" id="type" name="type" required>
+                    </td>
+                    <td>
+                        <input type="number" id="capacity" name="capacity" required>
+                    </td>
+                    <td>
+                        <input type="text" id="phone" name="phone" required>
+                    </td>
+                    <td>
+                        <input type="text" id="website" name="website" required>
+                    </td>
+                    <td>
+                        <button type="submit" class="button create-button">Add</button>
+                    </td>
+                </form>
+            </tr>
 
             <?php foreach ($records as $record): ?>
 
@@ -40,3 +72,11 @@
             <?php endforeach ?>
         </tbody>
     </table>
+
+    <?php if (!empty($alert)): ?>
+    <div>
+        <script>
+        alert('<?= $alert ?>')
+        </script>
+    </div>
+    <?php endif; ?>
