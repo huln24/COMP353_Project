@@ -2,11 +2,6 @@
 
 <html>
 
-    <head>
+<head>
 
-        <title><?= htmlspecialchars($title) ?></title>
-  
-        <script src="/js/scripts.js"></script>
-
-    </head>
-    <body>
+    <title><?= htmlspecialchars($title) ?></title>

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     $conn = connect();  
 
     // query result
-    $result = mysqli_query($conn, "SELECT * from Facilities"); 
+    $result = mysqli_query($conn, "SELECT * from Facilities f JOIN Region r ON r.PostalCode = f.PostalCode"); 
 
     // result to array
     $records = mysqli_fetch_all($result, MYSQLI_ASSOC);

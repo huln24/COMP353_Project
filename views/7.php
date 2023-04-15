@@ -1,78 +1,79 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Employees Working in Facility</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-		tr:nth-child(even) {background-color: #f2f2f2;}
-	</style>
-</head>
-<body>
+    <style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-<h2>Employees Working in Facility</h2>
+th,
+td {
+    text-align: left;
+    padding: 8px;
+}
 
-<table>
-	<thead>
-		<tr>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Start Date of Work</th>
-			<th>Date of Birth</th>
-			<th>Medicare Card Number</th>
-			<th>Telephone Number</th>
-			<th>Address</th>
-			<th>City</th>
-			<th>Province</th>
-			<th>Postal Code</th>
-			<th>Citizenship</th>
-			<th>Email Address</th>
-			<th>Role</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>John</td>
-			<td>Doe</td>
-			<td>2021-03-15</td>
-			<td>1990-05-20</td>
-			<td>1234567890</td>
-			<td>123-456-7890</td>
-			<td>123 Main St.</td>
-			<td>Toronto</td>
-			<td>Ontario</td>
-			<td>M1R 3J5</td>
-			<td>Canadian</td>
-			<td>john.doe@example.com</td>
-			<td>Administrator</td>
-		</tr>
-		<tr>
-			<td>Jane</td>
-			<td>Smith</td>
-			<td>2020-09-01</td>
-			<td>1992-10-05</td>
-			<td>0987654321</td>
-			<td>987-654-3210</td>
-			<td>456 Main St.</td>
-			<td>Toronto</td>
-			<td>Ontario</td>
-			<td>M1R 3J5</td>
-			<td>Canadian</td>
-			<td>jane.smith@example.com</td>
-			<td>Nurse</td>
-		</tr>
-	</tbody>
-</table>
+th {
+    background-color: #4CAF50;
+    color: white;
+}
 
-</body>
-</html>
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+    </style>
+    </head>
+
+    <body>
+
+        <h2>Employees Working in <?= $fname ?></h2>
+        <form action="7.php" method="POST">
+            <label for="facilities">Choose a Facility:</label>
+            <select id="facilities" name="facility">
+                <?php foreach ($choices as $choice): ?>
+                <option value="<?= $choice['FID'] ?>|<?= $choice['FName'] ?>"><?= $choice['FName'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="submit" name="GO" value="Go" />
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Start Date of Work</th>
+                    <th>Date of Birth</th>
+                    <th>Medicare Card Number</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Province</th>
+                    <th>Postal Code</th>
+                    <th>Citizenship</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <?php 
+			$chosen = isset($records);
+			if ($chosen):?>
+            <tbody>
+                <?php foreach ($records as $record): ?>
+
+                <tr class="table">
+                    <td class="cell"><?= $record["FirstName"] ?></td>
+                    <td class="cell"><?= $record["LastName"] ?></td>
+                    <td class="cell"><?= $record["StartDate"] ?></td>
+                    <td class="cell"><?= $record["DoB"] ?></td>
+                    <td class="cell"><?= $record["Medicare"] ?></td>
+                    <td class="cell"><?= $record["Phone"] ?></td>
+                    <td class="cell"><?= $record["Address"] ?></td>
+                    <td class="cell"><?= $record["City"] ?></td>
+                    <td class="cell"><?= $record["Province"] ?></td>
+                    <td class="cell"><?= $record["PostalCode"] ?></td>
+                    <td class="cell"><?= $record["Citizenship"] ?></td>
+                    <td class="cell"><?= $record["Email"] ?></td>
+                    <td class="cell"><?= $record["Role"] ?></td>
+                </tr>
+
+                <?php endforeach ?>
+            </tbody>
+            <?php endif; ?>
+        </table>
