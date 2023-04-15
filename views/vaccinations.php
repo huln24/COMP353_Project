@@ -52,13 +52,28 @@
 	<table>
 		<thead>
 			<tr>
+				<th>EID</th>
 				<th>Vaccine Type</th>
-				<th>Actions</th>
+				<th>Dose Number</th>
+				<th>Date</th>
+				<th>FID</th>
 			</tr>
 		</thead>
 		<tbody>
-			<!-- Table rows for data entries will be added here -->
-		</tbody>
+
+		<?php foreach ($records as $record): ?>
+
+		<tr class="table">
+    	<td class="cell"><?= $record["EID"] ?></td>
+    	<td class="cell"><?= $record["VaccineType"] ?></td>
+    	<td class="cell"><?= $record["DoseNumber"] ?></td>
+		<td class="cell"><?= $record["Date"] ?></td>
+    	<td class="cell"><?= $record["FID"] ?></td>
+		</tr>
+
+		<?php endforeach ?>
+
+	</tbody>
 		<tfoot>
 			<tr>
 			  <td colspan="3">
@@ -70,28 +85,6 @@
 		  </tfoot>
 	</table>	
 			<!-- <?php
-				// Connect to database and retrieve vaccine data
-				$connection = mysqli_connect('localhost', 'username', 'password', 'database_name');
-				$query = "SELECT VaccineType FROM Vaccine";
-				$result = mysqli_query($connection, $query);
-
-				// Display vaccine data in HTML table
-				if (mysqli_num_rows($result) > 0) {
-					while($row = mysqli_fetch_assoc($result)) {
-						echo "<tr>";
-						echo "<td>" . $row['VaccineType'] . "</td>";
-						echo "<td>";
-						echo "<a href='display_vaccine.php?vaccineType=" . $row['VaccineType'] . "'><button>Display</button></a>";
-						echo "<a href='edit_vaccine.php?vaccineType=" . $row['VaccineType'] . "'><button>Edit</button></a>";
-						echo "<button onclick=\"deleteVaccine('" . $row['VaccineType'] . "')\">Delete</button>";
-						echo "</td>";
-						echo "</tr>";
-					}
-				} else {
-					echo "<tr><td colspan='2'>No vaccines found</td></tr>";
-				}
-
-				mysqli_close($connection);
 			?> -->
 	
 	<script>

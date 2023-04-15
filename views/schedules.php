@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Employee Schedule</title>
+	<title>Work Schedules</title>
 	<style>
 		table {
 		  border-collapse: collapse;
@@ -61,18 +61,6 @@
 			
 			<!-- PHP code to fetch and display employee schedules -->
 			<!-- <?php
-				$servername = "localhost";
-				$username = "username";
-				$password = "password";
-				$dbname = "database_name";
-
-				// Create connection
-				$conn = mysqli_connect($servername, $username, $password, $dbname);
-				// Check connection
-				if (!$conn) {
-					die("Connection failed: " . mysqli_connect_error());
-				}
-
 				$sql = "SELECT e.EmployeeName, s.ScheduleDate FROM EmployeeSchedule es JOIN Employee e ON es.EmployeeID = e.EmployeeID JOIN Schedule s ON es.ScheduleID = s.ScheduleID";
 				$result = mysqli_query($conn, $sql);
 

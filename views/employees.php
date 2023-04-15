@@ -68,18 +68,13 @@
     </tr>
   </thead>
 
-  <tr>
-    <td class="cell_top">Employee ID</td>
-    <td class="cell_top">First Name</td>
-    <td class="cell_top">Last Name</td>
-</tr>
-
 <?php foreach ($records as $record): ?>
 
 <tr class="table">
     <td class="cell"><?= $record["EID"] ?></td>
     <td class="cell"><?= $record["FirstName"] ?></td>
     <td class="cell"><?= $record["LastName"] ?></td>
+    
 
 </tr>
 
@@ -88,7 +83,7 @@
   <tbody>
    
     <!-- <?php
-    Replace the following with your own code to retrieve data from the database
+    //Replace the following with your own code to retrieve data from the database
     $employees = [
       [
         'EID' => 1,

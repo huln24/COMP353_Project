@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     $records = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     // disconnect from server
-    disconnect($conn);  
+    disconnect($conn);
     
     render("vaccinations.php", ["title" => "Vaccination Record", "records" => $records]);
 }
