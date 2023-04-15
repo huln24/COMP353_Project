@@ -26,9 +26,50 @@
         </tr>
     </thead>
     <tbody>
-        <td>
-            <button class="button create-button">Add</button>
-        </td>
+        <tr>
+            <form action="employees.php" method="POST">
+                <input type="hidden" name="action" value="add">
+                <td>
+                    <input type="hidden" required>
+                </td>
+                <td>
+                    <input type="text" id="fname" name="fname" required>
+                </td>
+                <td>
+                    <input type="text" id="lname" name="lname" required>
+                </td>
+                <td>
+                    <input type="text" id="medicare" name="medicare" required>
+                </td>
+                <td>
+                    <input type="date" id="dob" name="dob" required>
+                </td>
+                <td>
+                    <input type="text" id="address" name="address" required>
+                </td>
+                <td>
+                    <input type="text" id="city" name="city" required>
+                </td>
+                <td>
+                    <input type="text" id="province" name="province" required>
+                </td>
+                <td>
+                    <input type="text" id="postal" name="postal" required>
+                </td>
+                <td>
+                    <input type="text" id="phone" name="phone" required>
+                </td>
+                <td>
+                    <input type="text" id="email" name="email" required>
+                </td>
+                <td>
+                    <input type="text" id="citizen" name="citizen" required>
+                </td>
+                <td>
+                    <button type="submit" class="button create-button">Add</button>
+                </td>
+            </form>
+        </tr>
 
         <?php foreach ($records as $record): ?>
 
@@ -60,3 +101,11 @@
         <?php endforeach ?>
     </tbody>
 </table>
+
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; ?>

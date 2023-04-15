@@ -17,9 +17,31 @@
         </tr>
     </thead>
     <tbody>
-        <td>
-            <button class="button create-button">Add</button>
-        </td>
+        <tr>
+            <form action="infections.php" method="POST">
+                <input type="hidden" name="action" value="add">
+                <td>
+                    <select id="employees" name="employee" required>
+                        <?php foreach ($e_choices as $choice): ?>
+                        <option value="<?= $choice['EID'] ?>"><?= $choice['EID'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <input type="date" id="date" name="date" required>
+                </td>
+                <td>
+                    <select id="infections" name="infection" required>
+                        <?php foreach ($i_choices as $choice): ?>
+                        <option value="<?= $choice['InfectionType'] ?>"><?= $choice['InfectionType'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <button type="submit" class="button create-button">Add</button>
+                </td>
+            </form>
+        </tr>
 
         <?php foreach ($records as $record): ?>
 
@@ -42,3 +64,11 @@
         <?php endforeach ?>
     </tbody>
 </table>
+
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; ?>

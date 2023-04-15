@@ -18,9 +18,35 @@
         </tr>
     </thead>
     <tbody>
-        <td>
-            <button class="button create-button">Add</button>
-        </td>
+        <tr>
+            <form action="workschedules.php" method="POST">
+                <input type="hidden" name="action" value="add">
+                <td>
+                    <select id="employees" name="employee" required>
+                        <?php foreach ($e_choices as $choice): ?>
+                        <option value="<?= $choice['EID'] ?>"><?= $choice['EID'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <select id="facilities" name="facility" required>
+                        <?php foreach ($f_choices as $choice): ?>
+                        <option value="<?= $choice['FID'] ?>"><?= $choice['FID'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
+                <td>
+                    <input type="datetime-local" id="start" name="start" required>
+                </td>
+                <td>
+                    <input type="datetime-local" id="end" name="end" required>
+                </td>
+
+                <td>
+                    <button type="submit" class="button create-button">Add</button>
+                </td>
+            </form>
+        </tr>
 
         <?php foreach ($records as $record): ?>
             <tr class="table">
@@ -43,3 +69,11 @@
         <?php endforeach ?>
     </tbody>
 </table>
+
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; ?>
