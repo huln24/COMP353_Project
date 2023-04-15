@@ -24,6 +24,8 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
     $fname = "";
     $lname = "";
+    $start = "";
+    $end = "";
     // connect to server
     $conn = connect();  
     
@@ -70,7 +72,7 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST")
     // disconnect from server
     disconnect($conn);  
 
-    render("8.php", ["title" => "8 - Employee Schedule", "choices" => $choices, "records" => $records,"fname" => $fname, "lname" => $lname]);
+    render("8.php", ["title" => "8 - Employee Schedule", "choices" => $choices, "records" => $records,"fname" => $fname, "lname" => $lname, "start" => $start, "end" => $end]);
 }
 
 ?>

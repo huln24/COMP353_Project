@@ -1,4 +1,4 @@
-<h2>Schedule Details: <?= $fname ?> <?= $lname ?></h2>
+<h2>Schedule Details: <?= $fname ?> <?= $lname ?> from: <?= $start ?> to: <?= $end ?></h2>
 <form action="8.php" method="POST">
     <label for="employees">Employee:</label>
     <select id="employees" name="employee">
