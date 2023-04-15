@@ -1,49 +1,42 @@
 <?php
 include "utilities/helpers.php";
 
+// connect to server
+$conn = connect();  
+
 $alert = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "PUT")
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    // connect to server
-    $conn = connect();
-    echo "hello";
-    // get values
-    $eid = $_PUT['employee'];
-    $vaccine = $_PUT['vaccine'];
-    $dose = $_PUT['dose'];
-    $date = $_PUT['date'];
-    $fid = $_PUT['fid'];
+    $action = $_POST['action'] ?? "nothing";
 
-    $query = "insert into Injections(EID, VaccineType, DoseNumber, Date, FID) values(?,?,?,?,?)";
+    if ($action == 'add') {
+        // get values
+        $eid = $_POST['employee'];
+        $vaccine = $_POST['vaccine'];
+        $dose = $_POST['dose'];
+        $date = $_POST['date'];
+        $fid = $_POST['facility'];
 
-    // prepare query
-    $stmt = mysqli_prepare($conn, $query); 
+        $query = "insert into Injections(EID, VaccineType, DoseNumber, Date, FID) values(?,?,?,?,?)";
 
-    // bind query with chosen facility id
-    mysqli_stmt_bind_param($stmt, 'isisi', $eid, $vaccine, $dose, $date, $fid);
-    
-    // execute query
-    $succes = mysqli_stmt_execute($stmt);
+        // prepare query
+        $stmt = mysqli_prepare($conn, $query); 
 
-    if($success) {
-        $alert = "Added succesfully!";
-    }
-    else {
-        $alert = "Unable to add. Error occured!";
+        // bind query with chosen facility id
+        mysqli_stmt_bind_param($stmt, 'isisi', $eid, $vaccine, $dose, $date, $fid);
+        
+        // execute query
+        $success = mysqli_stmt_execute($stmt);
+
+        if($success) {
+            $alert = "Added succesfully!";
+        }
+        else {
+            $alert = "Unable to add. Error occured!";
+        }
     }
 }
-// else if ($_SERVER["REQUEST_METHOD"] == "DELETE")
-// {
-    
-// }
-// else if ($_SERVER["REQUEST_METHOD"] == "PATCH")
-// {
-    
-// }
-
-    // connect to server
-    $conn = connect();  
 
     // "SELECT i.EID, FirstName, LastName, VaccineType, DoseNumber, Date, FName from Injections i JOIN Employees e ON e.EID = i.EID JOIN Facilities f ON f.FID = i.FID"
     $eid = "select EID from Employees";
@@ -64,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "PUT")
 
     // disconnect from server
     disconnect($conn);
+
     
     render("vaccinations.php", ["title" => "Vaccination Record", "records" => $records, "e_choices" => $e_choices, "v_choices" => $v_choices, "f_choices" => $f_choices, "alert" => $alert]);
 

@@ -1,51 +1,3 @@
-<style>
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-.button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-}
-
-.create-button {
-    background-color: #008CBA;
-}
-
-.edit-button {
-    background-color: #f44336;
-}
-
-.delete-button {
-    background-color: #555555;
-}
-</style>
-</head>
 <h2>Vaccinations</h2>
 <?php if (!empty($alert)): ?>
 <div>
@@ -69,29 +21,30 @@ tr:hover {
         </thead>
         <tbody>
             <tr>
-                <form action="vaccinations.php" method="PUT">
+                <form action="vaccinations.php" method="POST">
+                    <input type="hidden" name="action" value="add">
                     <td>
-                        <select id="employees" name="employee">
+                        <select id="employees" name="employee" required>
                             <?php foreach ($e_choices as $choice): ?>
                             <option value="<?= $choice['EID'] ?>"><?= $choice['EID'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </td>
                     <td>
-                        <select id="vaccines" name="vaccine">
+                        <select id="vaccines" name="vaccine" required>
                             <?php foreach ($v_choices as $choice): ?>
                             <option value="<?= $choice['VaccineType'] ?>"><?= $choice['VaccineType'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </td>
                     <td>
-                        <input type="number" id="dose" name="dose">
+                        <input type="number" id="dose" name="dose" required>
                     </td>
                     <td>
-                        <input type="date" id="date" name="date">
+                        <input type="date" id="date" name="date" required>
                     </td>
                     <td>
-                        <select id="facilities" name="facility">
+                        <select id="facilities" name="facility" required>
                             <?php foreach ($f_choices as $choice): ?>
                             <option value="<?= $choice['FID'] ?>"><?= $choice['FID'] ?></option>
                             <?php endforeach; ?>
