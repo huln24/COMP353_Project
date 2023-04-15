@@ -8,6 +8,7 @@
             </select>
             <input type="submit" name="GO" value="Go" />
         </form>
+                </br>
         <table>
             <thead>
                 <tr>
