@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
 
     render("employees.php", ["title" => "Employees", "records" => $records]);
 }
-// else if ($_SERVER["REQUEST_METHOD" = "POST"])
+// else if ($_SERVER["REQUEST_METHOD"] == "POST")
 // {
 
 // }

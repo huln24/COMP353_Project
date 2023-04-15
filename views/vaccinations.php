@@ -1,105 +1,126 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Vaccine Table</title>
-	<style>
-		table {
-		  border-collapse: collapse;
-		  width: 100%;
-		}
-	  
-		th, td {
-		  text-align: left;
-		  padding: 8px;
-		  border-bottom: 1px solid #ddd;
-		}
-	  
-		th {
-		  background-color: #4CAF50;
-		  color: white;
-		}
-	  
-		tr:hover {background-color: #f5f5f5;}
-	  
-		.button {
-		  background-color: #4CAF50;
-		  border: none;
-		  color: white;
-		  padding: 8px 16px;
-		  text-align: center;
-		  text-decoration: none;
-		  display: inline-block;
-		  font-size: 14px;
-		  margin: 4px 2px;
-		  cursor: pointer;
-		}
-	  
-		.create-button {
-		  background-color: #008CBA;
-		}
-	  
-		.edit-button {
-		  background-color: #f44336;
-		}
-	  
-		.delete-button {
-		  background-color: #555555;
-		}
-	  </style>
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.create-button {
+    background-color: #008CBA;
+}
+
+.edit-button {
+    background-color: #f44336;
+}
+
+.delete-button {
+    background-color: #555555;
+}
+</style>
 </head>
 <h2>Vaccinations</h2>
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; ?>
+
 <body>
-	<table>
-		<thead>
-			<tr>
-				<th>Vaccine Type</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- Table rows for data entries will be added here -->
-		</tbody>
-		<tfoot>
-			<tr>
-			  <td colspan="3">
-				<button class="button create-button">Add</button>
-				<button class="button edit-button">Edit</button>
-				<button class="button delete-button">Delete</button>
-			  </td>
-			</tr>
-		  </tfoot>
-	</table>	
-			<!-- <?php
-				// Connect to database and retrieve vaccine data
-				$connection = mysqli_connect('localhost', 'username', 'password', 'database_name');
-				$query = "SELECT VaccineType FROM Vaccine";
-				$result = mysqli_query($connection, $query);
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Vaccine Type</th>
+                <th>Dose Number</th>
+                <th>Date</th>
+                <th>Facility ID</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <form action="vaccinations.php" method="PUT">
+                    <td>
+                        <select id="employees" name="employee">
+                            <?php foreach ($e_choices as $choice): ?>
+                            <option value="<?= $choice['EID'] ?>"><?= $choice['EID'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <select id="vaccines" name="vaccine">
+                            <?php foreach ($v_choices as $choice): ?>
+                            <option value="<?= $choice['VaccineType'] ?>"><?= $choice['VaccineType'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="number" id="dose" name="dose">
+                    </td>
+                    <td>
+                        <input type="date" id="date" name="date">
+                    </td>
+                    <td>
+                        <select id="facilities" name="facility">
+                            <?php foreach ($f_choices as $choice): ?>
+                            <option value="<?= $choice['FID'] ?>"><?= $choice['FID'] ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit" class="button create-button">Add</button>
+                    </td>
+                </form>
+            </tr>
 
-				// Display vaccine data in HTML table
-				if (mysqli_num_rows($result) > 0) {
-					while($row = mysqli_fetch_assoc($result)) {
-						echo "<tr>";
-						echo "<td>" . $row['VaccineType'] . "</td>";
-						echo "<td>";
-						echo "<a href='display_vaccine.php?vaccineType=" . $row['VaccineType'] . "'><button>Display</button></a>";
-						echo "<a href='edit_vaccine.php?vaccineType=" . $row['VaccineType'] . "'><button>Edit</button></a>";
-						echo "<button onclick=\"deleteVaccine('" . $row['VaccineType'] . "')\">Delete</button>";
-						echo "</td>";
-						echo "</tr>";
-					}
-				} else {
-					echo "<tr><td colspan='2'>No vaccines found</td></tr>";
-				}
+            <?php foreach ($records as $record): ?>
 
-				mysqli_close($connection);
-			?> -->
-	
-	<script>
-		function deleteVaccine(vaccineType) {
-			if (confirm("Are you sure you want to delete this vaccine?")) {
-				window.location.href = "delete_vaccine.php?vaccineType=" + vaccineType;
-			}
-		}
-	</script>
-</body>
-</html>
+            <tr class="table">
+                <td class="cell"><?= $record["EID"] ?></td>
+                <td class="cell"><?= $record["VaccineType"] ?></td>
+                <td class="cell"><?= $record["DoseNumber"] ?></td>
+                <td class="cell"><?= $record["Date"] ?></td>
+                <td class="cell"><?= $record["FID"] ?></td>
+                <td>
+                    <form action="vaccinations.php" method="PATCH">
+                        <button class="button edit-button">Edit</button>
+                    </form>
+                    <form action="vaccinations.php" method="DELETE">
+                        <button class="button delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+
+            <?php endforeach ?>
+        </tbody>
+    </table>
