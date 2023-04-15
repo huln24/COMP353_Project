@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Employees Working in Facility</title>
-</head>
-<body>
-
-        <h2>Employees Working in <?= $fname ?></h2>
+<h2>Employees Working in <?= $fname ?></h2>
         <form action="7.php" method="POST">
             <label for="facilities">Choose a Facility:</label>
             <select id="facilities" name="facility">
