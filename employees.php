@@ -1,7 +1,6 @@
 <?php
 include "utilities/helpers.php";
 
-// connect to server
 $conn = connect();  
 
 $alert = "";
@@ -45,6 +44,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
         else {
             $alert = "Unable to add. Error occured!";
+        }
+    }
+
+    if ($action == "delete") {
+        // get values
+        $eid = $_POST['eid'];
+        
+        // prepare query
+        $stmt = mysqli_prepare($conn, "DELETE FROM Employees Where EID = ?;");
+        
+        mysqli_stmt_bind_param($stmt, 's', $eid);
+
+        // execute query
+        $success = mysqli_stmt_execute($stmt);
+
+        if($success) {
+            $alert = "Deleted succesfully!";
+        }
+        else {
+            $alert = "Unable to delete. Error occured!";
         }
     }
 }

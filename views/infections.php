@@ -38,12 +38,18 @@
         <?php foreach ($records as $record): ?>
 
         <tr class="table">
-            <td class="cell"><?= $record["EID"] ?></td>
-            <td class="cell"><?= $record["InfectionDate"] ?></td>
+            <td class="cell"><?= $eid = $record["EID"] ?></td>
+            <td class="cell"><?= $infection_date = $record["InfectionDate"] ?></td>
             <td class="cell"><?= $record["InfectionType"] ?></td>
             <td colspan="2">
-                <button class="button edit-button">Edit</button>
-                <button class="button delete-button">Delete</button>
+                <form action="infections.php" method="PATCH">
+                    <button class="button edit-button">Edit</button>
+                </form>
+                <form action="infections.php" method="POST">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="key" value="<?= $eid?>,<?= $infection_date?>">
+                    <button type="submit" class="button delete-button">Delete</button>
+                </form>
             </td>
         </tr>
 

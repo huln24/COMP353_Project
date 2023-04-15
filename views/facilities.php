@@ -1,4 +1,4 @@
-    <h2>Facilities</h2>
+<h2>Facilities</h2>
     <table>
         <thead>
             <tr>
@@ -51,7 +51,8 @@
                 </form>
             </tr>
 
-            <?php foreach ($records as $record): ?>
+            <?php foreach ($records as $record):
+                $fid = $record["FID"]; ?>
 
             <tr class="table">
                 <td class="cell"><?= $record["FName"] ?></td>
@@ -64,8 +65,14 @@
                 <td class="cell"><?= $record["Phone"] ?></td>
                 <td class="cell"><?= $record["Website"] ?></td>
                 <td colspan="3">
-                    <button class="button edit-button">Edit</button>
-                    <button class="button delete-button">Delete</button>
+                    <form action="facilities.php" method="PATCH">
+                        <button class="button edit-button">Edit</button>
+                    </form>
+                    <form action="facilities.php" method="POST">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="fid" value="<?= $fid?>">
+                        <button type="submit" class="button delete-button">Delete</button>
+                    </form>
                 </td>
             </tr>
 
