@@ -1,33 +1,35 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Facility Schedule by Role</title>
-</head>
-<body>
-	<h1>Facility Schedule by Role</h1>
-	<h2>Facility: [Facility Name]</h2>
-	<h3>Period: [Start Date] - [End Date]</h3>
-	<table>
-		<thead>
-			<tr>
-				<th>Role</th>
-				<th>Total Hours Scheduled</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>Doctor</td>
-				<td>[Total Doctor Hours]</td>
-			</tr>
-			<tr>
-				<td>Nurse</td>
-				<td>[Total Nurse Hours]</td>
-			</tr>
-			<tr>
-				<td>Other</td>
-				<td>[Total Other Hours]</td>
-			</tr>
-		</tbody>
-	</table>
-</body>
-</html>
+<h1>Hours Scheduled for Roles in Facility</h1>
+<p>Select "Vancouver General Hospital" for 5 tuples.</p>        
+        <form action="12.php" method="POST">
+            <label for="facilities">Choose a Facility:</label>
+            <select id="facilities" name="facility">
+                <?php foreach ($choices as $choice): ?>
+                <option value="<?= $choice['FID'] ?>|<?= $choice['FName'] ?>"><?= $choice['FName'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="submit" name="GO" value="Go" />
+        </form>
+                </br>
+    <table>
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Total Scheduled Hours</th>
+            </tr>
+        </thead>
+            <?php 
+			$chosen = isset($records);
+			if ($chosen):?>
+        <tbody>
+
+            <?php foreach ($records as $record): ?>
+
+            <tr class="table">
+                <td class="cell"><?= $record["Role"] ?></td>
+                <td class="cell"><?= $record["TotalScheduledHours"] ?></td>
+            </tr>
+
+            <?php endforeach ?>
+            </tbody>
+            <?php endif; ?>
+        </table>
