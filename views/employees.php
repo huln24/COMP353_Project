@@ -1,4 +1,12 @@
 <h2>Employees</h2>
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; 
+?>
 <table>
     <thead>
         <tr>
@@ -25,7 +33,7 @@
         <?php foreach ($records as $record): ?>
 
         <tr class="table">
-            <td class="cell"><?= $record["EID"] ?></td>
+            <td class="cell"><?= $eid = $record["EID"] ?></td>
             <td class="cell"><?= $record["FirstName"] ?></td>
             <td class="cell"><?= $record["LastName"] ?></td>
             <td class="cell"><?= $record["Medicare"] ?></td>
@@ -38,8 +46,14 @@
             <td class="cell"><?= $record["Email"] ?></td>
             <td class="cell"><?= $record["Citizenship"] ?></td>
             <td colspan="2">
-                <button class="button edit-button">Edit</button>
-                <button class="button delete-button">Delete</button>
+                    <form action="employees.php" method="PATCH">
+                        <button class="button edit-button">Edit</button>
+                    </form>
+                    <form action="employees.php" method="POST">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="eid" value="<?= $eid?>">
+                        <button type="submit" class="button delete-button">Delete</button>
+                    </form>
             </td>
         </tr>
 

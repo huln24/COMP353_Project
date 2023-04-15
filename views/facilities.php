@@ -1,7 +1,16 @@
-    <h2>Facilities</h2>
+<h2>Facilities</h2>
+<?php if (!empty($alert)): ?>
+<div>
+    <script>
+    alert('<?= $alert ?>')
+    </script>
+</div>
+<?php endif; 
+?>
     <table>
         <thead>
             <tr>
+                <th>FID</th>
                 <th>Name</th>
                 <th>Address</th>
                 <th>City</th>
@@ -22,6 +31,7 @@
             <?php foreach ($records as $record): ?>
 
             <tr class="table">
+                <td class="cell"><?= $fid = $record["FID"] ?></td>
                 <td class="cell"><?= $record["FName"] ?></td>
                 <td class="cell"><?= $record["FAddress"] ?></td>
                 <td class="cell"><?= $record["City"] ?></td>
@@ -32,8 +42,14 @@
                 <td class="cell"><?= $record["Phone"] ?></td>
                 <td class="cell"><?= $record["Website"] ?></td>
                 <td colspan="3">
-                    <button class="button edit-button">Edit</button>
-                    <button class="button delete-button">Delete</button>
+                    <form action="facilities.php" method="PATCH">
+                        <button class="button edit-button">Edit</button>
+                    </form>
+                    <form action="facilities.php" method="POST">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="fid" value="<?= $fid?>">
+                        <button type="submit" class="button delete-button">Delete</button>
+                    </form>
                 </td>
             </tr>
 

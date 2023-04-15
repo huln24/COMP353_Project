@@ -36,6 +36,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $alert = "Unable to add. Error occured!";
         }
     }
+
+    if ($action == "delete") {
+        // get values
+        $key_arr = preg_split ("/\,/", $_POST['key']);
+        
+        // prepare query
+        $stmt = mysqli_prepare($conn, "DELETE FROM Injections Where EID = ? AND VaccineType = ? AND DoseNumber = ?;");
+        
+        mysqli_stmt_bind_param($stmt, 'sss', $key_arr[0], $key_arr[1], $key_arr[2]);
+
+        // execute query
+        $success = mysqli_stmt_execute($stmt);
+
+        if($success) {
+            $alert = "Deleted succesfully!";
+        }
+        else {
+            $alert = "Unable to delete. Error occured!";
+        }
+    }
+
 }
 
     // "SELECT i.EID, FirstName, LastName, VaccineType, DoseNumber, Date, FName from Injections i JOIN Employees e ON e.EID = i.EID JOIN Facilities f ON f.FID = i.FID"

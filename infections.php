@@ -1,10 +1,35 @@
 <?php
 include "utilities/helpers.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "GET")
+// connect to server
+$conn = connect();
+
+$alert = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    // connect to server
-    $conn = connect();  
+    $action = $_POST['action'] ?? "nothing";
+
+    if ($action == "delete") {
+        // get values
+        $key_arr = preg_split ("/\,/", $_POST['key']);
+        
+        // prepare query
+        $stmt = mysqli_prepare($conn, "DELETE FROM Infected Where EID = ? AND InfectionDate = ?;");
+        
+        mysqli_stmt_bind_param($stmt, 'ss', $key_arr[0], $key_arr[1]);
+
+        // execute query
+        $success = mysqli_stmt_execute($stmt);
+
+        if($success) {
+            $alert = "Deleted succesfully!";
+        }
+        else {
+            $alert = "Unable to delete. Error occured!";
+        }
+    }
+}
 
     // query result
     $result = mysqli_query($conn, "SELECT * from Infected"); 
@@ -15,11 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     // disconnect from server
     disconnect($conn);  
     
-    render("infections.php", ["title" => "Infections", "records" => $records]);
-}
-// else if ($_SERVER["REQUEST_METHOD" = "POST"])
-// {
-
-// }
+    render("infections.php", ["title" => "Infections", "records" => $records, "alert" => $alert]);
 
 ?>

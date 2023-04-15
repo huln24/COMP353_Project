@@ -59,18 +59,20 @@
             <?php foreach ($records as $record): ?>
 
             <tr class="table">
-                <td class="cell"><?= $record["EID"] ?></td>
-                <td class="cell"><?= $record["VaccineType"] ?></td>
-                <td class="cell"><?= $record["DoseNumber"] ?></td>
+                <td class="cell"><?= $eid = $record["EID"] ?></td>
+                <td class="cell"><?= $vaccine_type = $record["VaccineType"] ?></td>
+                <td class="cell"><?= $dose_no = $record["DoseNumber"] ?></td>
                 <td class="cell"><?= $record["Date"] ?></td>
                 <td class="cell"><?= $record["FID"] ?></td>
                 <td>
-                    <form action="vaccinations.php" method="PATCH">
-                        <button class="button edit-button">Edit</button>
-                    </form>
-                    <form action="vaccinations.php" method="DELETE">
-                        <button class="button delete-button">Delete</button>
-                    </form>
+                <form action="vaccinations.php" method="PATCH">
+                    <button class="button edit-button">Edit</button>
+                </form>
+                <form action="vaccinations.php" method="POST">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="key" value="<?= $eid?>,<?= $vaccine_type?>, <?= $dose_no?>">
+                    <button type="submit" class="button delete-button">Delete</button>
+                </form>
                 </td>
             </tr>
 

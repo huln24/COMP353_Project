@@ -1,25 +1,35 @@
 <?php
 include "utilities/helpers.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "GET")
+$conn = connect();  
+
+$alert = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
-    // connect to server
-    $conn = connect();  
-    
-    $action = $_GET['action'] ?? "nothing";
+    $action = $_POST['action'] ?? "nothing";
 
-    if ($action == 'delete') {
-        $id = $_GET["id"];
-        $query = "DELETE FROM Employees WHERE EID = $id";
-        if (mysqli_execute_query($conn, $query)) {
-            echo '<script>alert("Deleted succesfully!")</script>';
-            redirect("employees.php");
-        } 
-        else {
-            echo '<script>alert("Oops! Something went wrong.")</script>';
+    if ($action == "delete") {
+        // get values
+        $eid = $_POST['eid'];
+        
+        // prepare query
+        $stmt = mysqli_prepare($conn, "DELETE FROM Employees Where EID = ?;");
+        
+        mysqli_stmt_bind_param($stmt, 's', $eid);
+
+        // execute query
+        $success = mysqli_stmt_execute($stmt);
+
+        if($success) {
+            $alert = "Deleted succesfully!";
         }
-
+        else {
+            $alert = "Unable to delete. Error occured!";
+        }
     }
+}
+
     // query result
     $result = mysqli_query($conn, "SELECT * from Employees f JOIN Region r ON r.PostalCode = f.PostalCode"); 
 
@@ -29,11 +39,5 @@ if ($_SERVER["REQUEST_METHOD"] == "GET")
     // disconnect from server
     disconnect($conn);  
 
-    render("employees.php", ["title" => "Employees", "records" => $records]);
-}
-// else if ($_SERVER["REQUEST_METHOD"] == "POST")
-// {
-
-// }
-
+    render("employees.php", ["title" => "Employees", "records" => $records, "alert" => $alert]);
 ?>
