@@ -1,5 +1,5 @@
 <?php
-// For connection to school server
+//For connection to school server
 $host = "qbc353.encs.concordia.ca";
 $username = "qbc353_4";
 $pass = "Br0wn133";
