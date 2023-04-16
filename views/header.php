@@ -4,20 +4,21 @@
 
 <head>
 
-        <title><?= htmlspecialchars($title) ?></title>
-        <link rel="stylesheet" href="css/style.css">
-        <script src="/js/scripts.js"></script>
+    <title><?= htmlspecialchars($title) ?></title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
 
-    </head>
+</head>
+
 <body>
     <nav>
-		<ul>
-			<li><a href="facilities.php">Facilities</a></li>
-			<li><a href="employees.php">Employees</a></li>
-			<li><a href="vaccinations.php">Vaccinations</a></li>
-			<li><a href="infections.php">Infections</a></li>
-			<li><a href="schedules.php">Work Schedule</a></li>
-			<li><a href="6.php">6</a></li>
+        <ul>
+            <li><a href="facilities.php">Facilities</a></li>
+            <li><a href="employees.php">Employees</a></li>
+            <li><a href="vaccinations.php">Vaccinations</a></li>
+            <li><a href="infections.php">Infections</a></li>
+            <li><a href="schedules.php">Work Schedule</a></li>
+            <li><a href="6.php">6</a></li>
             <li><a href="7.php">7</a></li>
             <li><a href="8.php">8</a></li>
             <li><a href="9.php">9</a></li>
@@ -30,5 +31,5 @@
             <li><a href="16.php">16</a></li>
             <li><a href="17.php">17</a></li>
 
-		</ul>
-	</nav>
+        </ul>
+    </nav>
