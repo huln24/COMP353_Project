@@ -46,8 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $alert = "Unable to add. Error occured!";
         }
     }
-
-    if ($action == "delete") {
+    else if ($action == "delete") {
         // get values
         $eid = $_POST['eid'];
         
@@ -66,6 +65,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $alert = "Unable to delete. Error occured!";
         }
     }
+    else if ($action == "update") {
+        $eid = $_POST['eid'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $province = $_POST['province'];
+        $postal = $_POST['postal'];
+        $phone = $_POST['phone'];
+        $email = $_POST['email'];
+        $citizen = $_POST['citizen'];
+
+        $query1 = "insert into Region(PostalCode, City, Province) VALUES(?,?,?) on duplicate key update PostalCode = ?, City = ?, Province = ?";
+        $query2 = "update Employees set Address = ?, PostalCode = ?, Phone = ?, Email = ?, Citizenship = ? where EID = ?";
+
+        // prepare query
+        $stmt1 = mysqli_prepare($conn, $query1); 
+        $stmt2 = mysqli_prepare($conn, $query2); 
+
+        // bind query with chosen facility id
+        mysqli_stmt_bind_param($stmt1, 'ssssss', $postal, $city, $province, $postal, $city, $province);
+        mysqli_stmt_bind_param($stmt2, 'sssssi', $address, $postal, $phone, $email, $citizen, $eid);
+        
+        // execute query
+        $success1 = mysqli_stmt_execute($stmt1);
+        $success2 = mysqli_stmt_execute($stmt2);
+
+        if($success1 and $success2 ) {
+            $alert = "Update succesfully!";
+        }
+        else {
+            $alert = "Unable to update. Error occured!";
+        }
+
+        // send alert to javascript as json
+        $data = [
+            "alert" => $alert
+        ];
+        echo json_encode($data);
+        exit;
+    }
+
 }
 
     // query result

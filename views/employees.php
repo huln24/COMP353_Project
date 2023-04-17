@@ -65,33 +65,34 @@
 
         <?php foreach ($records as $record): ?>
 
-        <tr class="table">
-            <td class="cell"><?= $eid = $record["EID"] ?></td>
-            <td class="cell"><?= $record["FirstName"] ?></td>
-            <td class="cell"><?= $record["LastName"] ?></td>
-            <td class="cell"><?= $record["Medicare"] ?></td>
-            <td class="cell"><?= $record["DoB"] ?></td>
-            <td class="cell"><?= $record["Address"] ?></td>
-            <td class="cell"><?= $record["City"] ?></td>
-            <td class="cell"><?= $record["Province"] ?></td>
-            <td class="cell"><?= $record["PostalCode"] ?></td>
-            <td class="cell"><?= $record["Phone"] ?></td>
-            <td class="cell"><?= $record["Email"] ?></td>
-            <td class="cell"><?= $record["Citizenship"] ?></td>
+        <tr class="table" id="<?= $eid = $record["EID"] ?>">
+            <td class="cell eid"><?= $eid = $record["EID"] ?></td>
+            <td class="cell fname"><?= $record["FirstName"] ?></td>
+            <td class="cell lname"><?= $record["LastName"] ?></td>
+            <td class="cell medicare"><?= $record["Medicare"] ?></td>
+            <td class="cell dob"><?= $record["DoB"] ?></td>
+            <td class="cell address"><?= $record["Address"] ?></td>
+            <td class="cell city"><?= $record["City"] ?></td>
+            <td class="cell province"><?= $record["Province"] ?></td>
+            <td class="cell postal"><?= $record["PostalCode"] ?></td>
+            <td class="cell phone"><?= $record["Phone"] ?></td>
+            <td class="cell email"><?= $record["Email"] ?></td>
+            <td class="cell citizen"><?= $record["Citizenship"] ?></td>
             <td colspan="2">
-                    <form action="employees.php" method="PATCH">
-                        <button class="button edit-button">Edit</button>
-                    </form>
-                    <form action="employees.php" method="POST">
-                        <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="eid" value="<?= $eid?>">
-                        <button type="submit" class="button delete-button">Delete</button>
-                    </form>
+
+                <button class="button edit-button" id="edit-<?=$eid?>" onclick="editEmployee('<?=$eid?>')">Edit</button>
+                <form action="employees.php" method="POST">
+                    <input type="hidden" name="action" value="delete">
+                    <input type="hidden" name="eid" value="<?= $eid?>">
+                    <button type="submit" class="button delete-button">Delete</button>
+                </form>
             </td>
         </tr>
         <?php endforeach ?>
     </tbody>
 </table>
+
+
 
 <?php if (!empty($alert)): ?>
 <div>

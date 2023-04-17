@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         // prepare query
         $stmt = mysqli_prepare($conn, $query); 
 
-        // bind query with chosen facility id
+        // bind query 
         mysqli_stmt_bind_param($stmt, 'isisi', $eid, $vaccine, $dose, $date, $fid);
         
         // execute query
@@ -36,8 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $alert = "Unable to add. Error occured!";
         }
     }
-
-    if ($action == "delete") {
+    else if ($action == "delete") {
         // get values
         $key_arr = preg_split ("/\,/", $_POST['key']);
         
@@ -55,6 +54,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         else {
             $alert = "Unable to delete. Error occured!";
         }
+    }
+    else if ($action == "update") {
+        // get values
+        $eid = $_POST['employee'];
+        $vaccine = $_POST['vaccine'];
+        $dose = $_POST['dose'];
+        $date = $_POST['date'];
+        $fid = $_POST['facility'];
+
+        $query = "update Injections set Date = ?, FID = ? where EID = ?, VaccineType = ?, DoseNumber = ?";
+
+        // prepare query
+        $stmt = mysqli_prepare($conn, $query); 
+
+        // bind query with chosen facility id
+        mysqli_stmt_bind_param($stmt, 'siisi', $date, $fid, $eid, $vaccine, $dose);
+        
+        // execute query
+        $success = mysqli_stmt_execute($stmt);
+
+        if($success) {
+            $alert = "Updated succesfully!";
+        }
+        else {
+            $alert = "Unable to update. Error occured!";
+        }
+
+        // send alert to javascript as json
+        $data = [
+            "alert" => $alert
+        ];
+        echo json_encode($data);
+        exit;
     }
 
 }
