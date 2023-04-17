@@ -12,6 +12,7 @@
         try {
             include_once('config.php');
             $conn = mysqli_connect($host, $username, $pass, $db, $port);
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         }
         catch(Exception $e) {
             echo "Connection failed: ", $e -> getMessage(), "\n";
@@ -65,6 +66,16 @@
         else
         {
             trigger_error("Invalid view: {$view}", E_USER_ERROR);
+        }
+    }
+
+    function debug_to_console($data) {
+        $output = $data;
+        if (is_array($output))
+            foreach ($output as $key => $value) {
+                foreach ($value as $subkey => $subvalue) {
+                echo "<script>console.log('Key: ".$key.", Subkey: ".$subkey.", Value: ". $subvalue. "');</script>";
+            }
         }
     }
 

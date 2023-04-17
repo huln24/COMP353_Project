@@ -6,12 +6,11 @@
 
         <title><?= htmlspecialchars($title) ?></title>
         <link rel="stylesheet" href="css/style.css">
-        <script src="/js/scripts.js"></script>
-
-    </head>
+</head>
 <body>
     <nav>
 		<ul>
+            <li><a href="index.php">Home</a></li>
 			<li><a href="facilities.php">Facilities</a></li>
 			<li><a href="employees.php">Employees</a></li>
 			<li><a href="vaccinations.php">Vaccinations</a></li>
