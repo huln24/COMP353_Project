@@ -88,7 +88,6 @@
                 </form>
             </td>
         </tr>
-
         <?php endforeach ?>
     </tbody>
 </table>
@@ -98,7 +97,7 @@
 <?php if (!empty($alert)): ?>
 <div>
     <script>
-    alert('<?= $alert ?>')
+        alert('<?= $alert ?>')
     </script>
 </div>
 <?php endif; ?>

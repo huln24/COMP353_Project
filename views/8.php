@@ -17,6 +17,7 @@
     <input type="date" id="end_date" name="end_date" required><br><br>
     <input type="submit" value="Search">
 </form>
+</br>
 <table>
     <thead>
         <tr>
